@@ -342,57 +342,72 @@ const App = () => {
 
         </div>
 
-        <div className="form-group">
-          <label>Student Full Name</label>
-          <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Enter full name" />
-        </div>
+        {/* Personal Information Section */}
+        <div className="form-group" style={{ background: '#f8fafc', padding: '15px', borderRadius: '12px', border: '1px dashed #cbd5e1', marginBottom: '20px' }}>
+          <label style={{ color: 'var(--primary)', marginBottom: '15px', display: 'block' }}>👤 Personal Information</label>
 
-        <div className="grid-2">
           <div className="form-group">
-            <label>Father's Name</label>
-            <input type="text" name="fatherName" value={formData.fatherName} onChange={handleInputChange} />
+            <label>Student Full Name</label>
+            <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Enter full name" />
           </div>
-          <div className="form-group">
-            <label>CNIC Number</label>
-            <input type="text" name="cnic" value={formData.cnic} onChange={handleInputChange} />
-          </div>
-        </div>
 
-        <div className="grid-2">
-          <div className="form-group">
-            <label>Blood Group</label>
-            <input type="text" name="bloodGroup" value={formData.bloodGroup} onChange={handleInputChange} />
+          <div className="grid-2">
+            <div className="form-group">
+              <label>Father's Name</label>
+              <input type="text" name="fatherName" value={formData.fatherName} onChange={handleInputChange} />
+            </div>
+            <div className="form-group">
+              <label>CNIC Number</label>
+              <input type="text" name="cnic" value={formData.cnic} onChange={handleInputChange} />
+            </div>
           </div>
-          <div className="form-group">
-            <label>Date of Birth</label>
-            <input type="text" name="dob" value={formData.dob} onChange={handleInputChange} />
-          </div>
-        </div>
 
-        <div className="form-group">
-          <label>Residential Address</label>
-          <textarea name="address" rows="2" value={formData.address} onChange={handleInputChange}></textarea>
-        </div>
-
-        <div className="grid-2">
-          <div className="form-group">
-            <label>Mark of Identification</label>
-            <input type="text" name="markOfId" value={formData.markOfId} onChange={handleInputChange} />
-          </div>
-          <div className="form-group">
-            <label>Contact Cell</label>
-            <input type="text" name="cell" value={formData.cell} onChange={handleInputChange} />
+          <div className="grid-2">
+            <div className="form-group">
+              <label>Blood Group</label>
+              <input type="text" name="bloodGroup" value={formData.bloodGroup} onChange={handleInputChange} />
+            </div>
+            <div className="form-group">
+              <label>Date of Birth</label>
+              <input type="text" name="dob" value={formData.dob} onChange={handleInputChange} />
+            </div>
           </div>
         </div>
 
-        <div className="form-group">
-          <label>Official Course / Role Name</label>
-          <input type="text" name="courseName" value={formData.courseName} onChange={handleInputChange} />
+        {/* Contact Information Section */}
+        <div className="form-group" style={{ background: '#f8fafc', padding: '15px', borderRadius: '12px', border: '1px dashed #cbd5e1', marginBottom: '20px' }}>
+          <label style={{ color: 'var(--primary)', marginBottom: '15px', display: 'block' }}>📍 Contact Information</label>
+
+          <div className="form-group">
+            <label>Residential Address</label>
+            <textarea name="address" rows="2" value={formData.address} onChange={handleInputChange}></textarea>
+          </div>
+
+          <div className="grid-2">
+            <div className="form-group">
+              <label>Mark of Identification</label>
+              <input type="text" name="markOfId" value={formData.markOfId} onChange={handleInputChange} />
+            </div>
+            <div className="form-group">
+              <label>Contact Cell</label>
+              <input type="text" name="cell" value={formData.cell} onChange={handleInputChange} />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter email address" />
+          </div>
         </div>
 
-        <div className="form-group">
-          <label>Email Address</label>
-          <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter email address" />
+        {/* Academic Information Section */}
+        <div className="form-group" style={{ background: '#f8fafc', padding: '15px', borderRadius: '12px', border: '1px dashed #cbd5e1', marginBottom: '20px' }}>
+          <label style={{ color: 'var(--primary)', marginBottom: '15px', display: 'block' }}>🎓 Academic Information</label>
+
+          <div className="form-group">
+            <label>Official Course / Role Name</label>
+            <input type="text" name="courseName" value={formData.courseName} onChange={handleInputChange} />
+          </div>
         </div>
 
         <div className="form-group" style={{ marginTop: '2rem' }}>
