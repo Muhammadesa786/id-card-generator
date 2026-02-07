@@ -1,0 +1,1622 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap');
+
+:root {
+  /* Exact Mirror Palette */
+  --primary: #1a2634;
+  /* Navy */
+  --secondary: #e61e2a;
+  /* Red */
+  --bg-main: #ffffff;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+
+  /* Common variables */
+  --bg-gradient: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  --surface: #ffffff;
+  --text-main: #1e293b;
+  --marker: #64748b;
+  --card-shadow: 0 40px 80px -15px rgba(30, 58, 138, 0.2), 0 20px 40px -20px rgba(0, 0, 0, 0.1);
+  --radius-lg: 24px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
+}
+
+body {
+  background: var(--bg-gradient);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  position: absolute;
+  top: -10px;
+  left: 0;
+  z-index: 1100;
+  background: white;
+  border: none;
+  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  color: var(--primary);
+}
+
+.menu-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+}
+
+.mobile-action-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 10px 20px;
+  display: none;
+  /* Hidden by default, shown in media query */
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 900;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 800px) {
+  .mobile-action-bar {
+    display: flex;
+  }
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.2s;
+}
+
+.action-btn:active {
+  color: var(--primary);
+}
+
+.action-btn.print {
+  background: var(--primary);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+}
+
+.app-main {
+  width: 100%;
+}
+
+.app-container {
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  /* Allow wrapping on medium screens */
+}
+
+/* Form Section */
+.form-section {
+  flex: 1;
+  min-width: 300px;
+  /* Ensure it doesn't get too small */
+  max-width: 500px;
+  /* Prevent it from getting too wide on large screens */
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.preview-section {
+  flex: 2;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.preview-container {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ID Card Wrapper - Ensure it can contain the absolute positioned card */
+.id-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+  /* Add padding to prevent shadow clipping if needed */
+}
+
+/* --- Responsive Media Queries --- */
+
+/* Tablet / Medium Screens */
+@media (max-width: 1100px) {
+  .app-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-section {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .preview-section {
+    width: 100%;
+  }
+}
+
+/* Mobile Screens */
+@media (max-width: 650px) {
+  .app-main {
+    padding: 20px 10px;
+  }
+
+  header h1 {
+    font-size: 2rem !important;
+  }
+
+  .preview-container {
+    gap: 40px;
+    /* More space between stacked cards */
+  }
+
+  /* Scale down the entire ID card wrapper to fits on screen */
+  .id-card-wrapper {
+    transform: scale(calc(100vw / 480));
+    /* Slightly more generous scaling */
+    transform-origin: top center;
+    margin-bottom: -20%;
+  }
+
+  .id-card-wrapper:last-child {
+    margin-bottom: 0;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-menu-toggle {
+    display: flex !important;
+  }
+
+  header h1 {
+    font-size: 1.8rem !important;
+    padding: 0 10px !important;
+  }
+
+  .app-container {
+    padding-bottom: 80px;
+    /* Space for sticky bar */
+  }
+
+  .form-section {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 85%;
+    max-width: 350px;
+    height: 100vh;
+    z-index: 1000;
+    border-radius: 0;
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    background: white;
+    box-shadow: 20px 0 50px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-section.active {
+    left: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .id-card-wrapper {
+    transform: scale(calc(100vw / 520));
+    /* Scale more for very small screens */
+    margin-bottom: -30%;
+  }
+
+  .form-section {
+    width: 90%;
+  }
+}
+
+/* --- Touch-Friendly Controls --- */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  min-height: 48px;
+  /* Touch standard */
+  font-size: 16px;
+  /* Avoid auto-zoom on iOS */
+}
+
+.btn {
+  min-height: 48px;
+}
+
+/* Glassmorphism Form */
+.form-section {
+  flex: 0 0 500px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 3rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-section:hover {
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.15);
+}
+
+.form-header {
+  margin-bottom: 2.5rem;
+  border-left: 5px solid var(--primary);
+  padding-left: 1.5rem;
+}
+
+.form-header h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--marker);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #f1f5f9;
+  border-radius: 12px;
+  font-size: 1rem;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(26, 38, 52, 0.1);
+  outline: none;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* SKETCH-BASED BUTTERFLY WINGS ID CARD */
+.preview-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+}
+
+.id-card-wrapper {
+  position: relative;
+  transition: all 0.5s ease-out;
+}
+
+.id-card {
+  width: 380px;
+  height: 600px;
+  /* Increased height for better spacing */
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.id-card-front,
+.id-card-back {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: white;
+  z-index: 1;
+}
+
+.card-bg-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* --- Front Background Shapes --- */
+.front-bg-navy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 350px;
+  background: var(--primary);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  z-index: 1;
+}
+
+.front-bg-red {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 75%;
+  height: 400px;
+  background: var(--secondary);
+  clip-path: ellipse(80% 60% at 100% 0%);
+  z-index: 2;
+}
+
+.front-bg-accent {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 120px;
+  height: 100px;
+  background: var(--primary);
+  clip-path: polygon(100% 40%, 100% 100%, 0% 100%);
+  z-index: 1;
+}
+
+.front-bg-strip {
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+  width: 150px;
+  height: 30px;
+  background: var(--secondary);
+  transform: rotate(-35deg);
+  border-radius: 15px;
+  z-index: 2;
+}
+
+/* --- Back Background Shapes --- */
+.back-bg-navy-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 180px;
+  background: var(--primary);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.back-bg-red-top {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 160px;
+  background: var(--secondary);
+  clip-path: ellipse(70% 50% at 100% 0%);
+  opacity: 0.95;
+}
+
+.back-bg-red-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 180px;
+  height: 180px;
+  background: var(--secondary);
+  border-radius: 0 100% 0 0;
+}
+
+.back-bg-navy-bottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 150px;
+  background: var(--primary);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.back-bg-accent-strip {
+  position: absolute;
+  bottom: 120px;
+  right: 30px;
+  width: 160px;
+  height: 35px;
+  background: var(--secondary);
+  transform: rotate(-35deg);
+  border-radius: 20px;
+}
+
+/* --- Content Areas --- */
+.photo-center-wrap {
+  position: absolute;
+  top: 190px;
+  /* Radically shifted down to clear institute branding */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.mesh-container {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: #fff;
+  padding: 8px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  /* More pronounced shadow */
+  position: relative;
+}
+
+.mesh-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+  background-size: 8px 8px;
+  background-color: #f1f5f9;
+}
+
+.mirror-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+}
+
+.info-content {
+  position: relative;
+  z-index: 5;
+  padding-top: 385px;
+  /* Adjusted down for spacing */
+  padding-left: 45px;
+}
+
+.mirror-name {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.mirror-name span {
+  color: var(--secondary);
+}
+
+.mirror-role {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  letter-spacing: 2px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.role-line {
+  height: 2px;
+  width: 40px;
+  background: #334155;
+}
+
+.mirror-data-list {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.data-row {
+  display: flex;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.data-label {
+  width: 70px;
+  color: var(--text-dark);
+}
+
+.data-sep {
+  width: 20px;
+  color: var(--text-dark);
+}
+
+.data-val {
+  color: var(--text-dark);
+}
+
+/* --- Front Branding --- */
+.front-brand-area {
+  position: absolute;
+  top: 10px;
+  /* Adjusted for larger logo */
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 20;
+}
+
+.front-brand-logo {
+  width: 85px;
+  /* Increased and square for circle */
+  height: 85px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  border: 3px solid var(--secondary);
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  /* Pronounced professional shadow */
+}
+
+.front-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.front-brand-logo img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.front-brand-name {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  line-height: 1.1;
+}
+
+.front-brand-address {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+  opacity: 0.95;
+}
+
+/* --- Front Signature Row --- */
+.front-signature-row {
+  margin-top: 35px;
+  /* Pull signatures up */
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 0 45px;
+  /* Align with text margins */
+}
+
+.front-sig-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.front-sig-display {
+  width: 100%;
+  height: 45px;
+  /* Save vertical space */
+  border-bottom: 2px solid #94a3b8;
+  /* Darker border for "official" feel */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.principal-sig-box {
+  background: white !important;
+  border-radius: 4px;
+}
+
+.front-sig-display img {
+  max-height: 100%;
+  max-width: 100%;
+  mix-blend-mode: multiply;
+  filter: contrast(1.1);
+}
+
+.front-sig-label {
+  font-size: 0.7rem;
+  font-weight: 900;
+  /* Extra bold for official feel */
+  color: var(--primary);
+  /* Use navy for labels */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+
+/* --- Back Specifics --- */
+.back-brand-area {
+  position: relative;
+  z-index: 10;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.back-brand-logo {
+  width: 95px;
+  /* Increased and square for circle */
+  height: 95px;
+  background: var(--secondary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  border: 4px solid var(--primary);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.back-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.back-brand-name {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--primary);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.back-brand-slogan {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.back-copy-list {
+  padding: 25px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  /* Increased from 10px */
+  position: relative;
+  z-index: 5;
+  font-weight: 800;
+  /* All back text bold */
+}
+
+.copy-item {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  font-weight: 800;
+}
+
+.copy-bullet {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  background: var(--secondary);
+  border-radius: 50%;
+  margin-top: 2px;
+}
+
+.copy-text {
+  font-size: 0.85rem;
+  color: var(--text-dark);
+  line-height: 1.4;
+  font-weight: 800;
+  display: flex;
+  align-items: flex-start;
+  /* Align label and value at the top */
+  width: 100%;
+}
+
+.copy-label {
+  width: 145px;
+  /* Fixed width to ensure column alignment */
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.copy-val {
+  flex: 1;
+  padding-left: 10px;
+  /* Clear space before student info */
+}
+
+.sig-name {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+/* --- Universal Layout Elements (LOCKED POSITIONS) --- */
+
+/* 1. Header Area */
+.premium-header {
+  height: 110px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.institute-name {
+  font-size: 1.4rem;
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.institute-sub {
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-top: 4px;
+  opacity: 0.8;
+}
+
+/* 2. Logo Area */
+.logo-overlay {
+  position: absolute;
+  top: 45px;
+  right: 20px;
+  width: 70px;
+  height: 70px;
+  z-index: 20;
+}
+
+.main-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* 3. Photo Area */
+.student-photo-container {
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+  margin-top: 10px;
+}
+
+.photo-area {
+  width: 145px;
+  height: 175px;
+  background: #f1f5f9;
+  border: 4px solid white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.photo-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #cbd5e1;
+  color: #64748b;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+/* Photo Center Wrap - For circular/centered photos */
+.photo-center-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  z-index: 15;
+}
+
+.mesh-container {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
+    0 0 0 2px rgba(0, 0, 0, 0.05);
+  background: #f8fafc;
+}
+
+.mesh-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.05) 100%);
+  z-index: 1;
+}
+
+.mirror-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  /* Focus on face area */
+  position: relative;
+  z-index: 2;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  filter: contrast(1.05) brightness(1.02);
+}
+
+.mirror-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+/* 4. Name Ribbon */
+.name-ribbon {
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}
+
+.student-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  opacity: 0.5;
+  margin-bottom: 2px;
+}
+
+.student-name {
+  font-size: 1.7rem;
+  font-weight: 950;
+  line-height: 1;
+}
+
+/* 5. Course Bar */
+.course-bar {
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.course-name {
+  font-size: 0.85rem;
+  font-weight: 900;
+}
+
+.course-label {
+  font-size: 9px;
+  font-weight: 700;
+  opacity: 0.5;
+}
+
+/* 6. Signature Row */
+.signature-row {
+  height: 85px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 35px;
+  margin-top: auto;
+  margin-bottom: 15px;
+  z-index: 10;
+}
+
+.sig-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 110px;
+}
+
+.sig-display,
+.sig-canvas-display {
+  height: 45px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.sig-display img,
+.sig-canvas-display img {
+  max-height: 90%;
+  max-width: 95%;
+  mix-blend-mode: multiply;
+  filter: contrast(1.2);
+}
+
+.sig-label {
+  font-size: 8px;
+  font-weight: 800;
+  margin-top: 4px;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+/* --- Template Skinning (VISUAL ONLY) --- */
+
+/* Butterfly */
+.id-card.butterfly {
+  --butterfly-light-blue: #60a5fa;
+  /* Vibrant Light Blue */
+  --butterfly-light-red: #ff8787;
+  /* Vibrant Light Red */
+  background: linear-gradient(135deg, var(--butterfly-light-blue) 0%, var(--butterfly-light-blue) 45%, var(--butterfly-light-red) 45%, var(--butterfly-light-red) 100%);
+}
+
+.id-card.butterfly .card-pattern::before,
+.id-card.butterfly .card-pattern::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  width: 100px;
+  height: 80%;
+  background: linear-gradient(to bottom, var(--butterfly-light-red), var(--secondary), var(--butterfly-light-blue), var(--secondary), var(--butterfly-light-red));
+  opacity: 0.3;
+}
+
+/* Front View Color Overrides */
+.id-card.butterfly .front-bg-navy,
+.id-card.butterfly .front-bg-accent {
+  background: var(--butterfly-light-blue);
+}
+
+.id-card.butterfly .front-bg-red,
+.id-card.butterfly .front-bg-strip {
+  background: var(--butterfly-light-red);
+}
+
+.id-card.butterfly .premium-header {
+  background: var(--butterfly-light-blue);
+  color: #000000;
+  /* Black Header Text */
+}
+
+.id-card.butterfly .front-brand-name,
+.id-card.butterfly .front-brand-address {
+  color: #000000 !important;
+  /* Force Black */
+}
+
+.id-card.butterfly .student-name,
+.id-card.butterfly .student-label {
+  color: var(--butterfly-light-blue);
+}
+
+.id-card.butterfly .card-pattern::before {
+  left: -50px;
+  border-radius: 0 100% 100% 0 / 0 50% 50% 0;
+}
+
+.id-card.butterfly .card-pattern::after {
+  right: -50px;
+  border-radius: 100% 0 0 100% / 50% 0 0 50%;
+}
+
+/* Back View Butterfly Colors */
+.id-card.butterfly .id-card-back {
+  background: white;
+}
+
+.id-card.butterfly .id-card-back .back-bg-navy-top,
+.id-card.butterfly .id-card-back .back-bg-navy-bottom {
+  background: var(--butterfly-light-blue) !important;
+}
+
+.id-card.butterfly .id-card-back .back-bg-red-top,
+.id-card.butterfly .id-card-back .back-bg-red-bottom,
+.id-card.butterfly .id-card-back .back-bg-accent-strip {
+  background: var(--butterfly-light-red) !important;
+}
+
+.id-card.butterfly .id-card-back .back-brand-name,
+.id-card.butterfly .id-card-back .back-brand-slogan,
+.id-card.butterfly .id-card-back .copy-label,
+.id-card.butterfly .id-card-back .copy-val,
+.id-card.butterfly .id-card-back .copy-text,
+.id-card.butterfly .id-card-back .back-brand-name {
+  color: #000000 !important;
+  /* Force Black */
+}
+
+.id-card.butterfly .id-card-back .copy-bullet {
+  background: var(--butterfly-light-blue) !important;
+}
+
+.id-card.butterfly .photo-area {
+  border-radius: 40% 40% 10px 10px;
+}
+
+/* --- Card Back Universal --- */
+.back-header {
+  background: var(--primary);
+  color: var(--contrast-text, white);
+  padding: 20px;
+  text-align: center;
+}
+
+.back-details-list {
+  padding: 25px 30px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #f1f5f9;
+  padding: 8px 0;
+}
+
+.detail-row .label {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--primary);
+  text-transform: uppercase;
+}
+
+.detail-row .val {
+  font-size: 13px;
+  font-weight: 900;
+  color: #000;
+}
+
+.qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.qr-label {
+  font-size: 9px;
+  font-weight: 800;
+  color: #64748b;
+  margin-bottom: 5px;
+}
+
+.footer-deco {
+  height: 10px;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+  margin-top: auto;
+}
+
+/* --- A4 Print Layout --- */
+.print-mode-active {
+  background: #f1f5f9;
+  min-height: 100vh;
+  padding: 40px;
+}
+
+.a4-print-sheet {
+  background: white;
+  width: 210mm;
+  /* A4 Width */
+  min-height: 297mm;
+  /* A4 Height */
+  padding: 20mm;
+  margin: 0 auto;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.print-instructions {
+  background: #fffbeb;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #f59e0b;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.print-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15mm;
+  justify-items: center;
+}
+
+.print-item {
+  transform: scale(0.6);
+  /* Scale card down to fit 2-column A4 */
+  transform-origin: top left;
+  height: 350px;
+  /* Force height for grid spacing */
+  width: 228px;
+  /* 380 * 0.6 */
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .a4-print-sheet,
+  .a4-print-sheet * {
+    visibility: visible;
+  }
+
+  .a4-print-sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    box-shadow: none;
+    padding: 10mm;
+    margin: 0;
+  }
+
+  .print-instructions {
+    display: none;
+  }
+
+  header,
+  .template-selector,
+  .form-section,
+  .btn,
+  .download-btn {
+    display: none !important;
+  }
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  /* Better for mobile */
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn-primary:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.95);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--primary);
+  border: 2px solid #f1f5f9;
+}
+
+.btn-danger {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.sig-pad-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.sig-pad-container {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 550px;
+}
+
+.sig-pad-canvas-wrapper {
+  background: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+/* Template Preview Cleanup (Optional) */
+.template-info p {
+  font-size: 0.85rem;
+  color: var(--marker);
+  margin: 0;
+}
+
+
+
+@media (max-width: 1100px) {
+  .app-container {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 4rem;
+  }
+
+  .template-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .template-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   GEOMETRIC BLUE TEMPLATE (New)
+   ========================================================================== */
+
+.id-card.geometric-blue {
+  --geo-navy: #001e3c;
+  --geo-blue: #0056b3;
+  --geo-accent: #00a8e8;
+  background: #ffffff;
+}
+
+/* Front Shapes */
+.id-card.geometric-blue .geo-bg-navy-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 480px;
+  background: var(--geo-navy);
+  clip-path: polygon(0 0, 100% 0, 0 85%);
+  z-index: 1;
+}
+
+.id-card.geometric-blue .geo-bg-blue-top {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 400px;
+  background: var(--geo-blue);
+  clip-path: polygon(40% 0, 100% 0, 100% 100%, 0 0);
+  opacity: 0.8;
+  z-index: 2;
+}
+
+.id-card.geometric-blue .geo-bg-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 300px;
+  background: var(--geo-accent);
+  clip-path: polygon(70% 0, 100% 0, 100% 80%);
+  opacity: 0.4;
+  z-index: 3;
+}
+
+.id-card.geometric-blue .geo-bg-accent-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: var(--geo-accent);
+  clip-path: polygon(0 40%, 100% 0, 100% 100%, 0 100%);
+  z-index: 1;
+}
+
+/* Back Shapes */
+.id-card.geometric-blue .geo-bg-navy-back-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: var(--geo-navy);
+  clip-path: ellipse(80% 60% at 50% 0%);
+  z-index: 1;
+}
+
+.id-card.geometric-blue .geo-bg-blue-back-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 250px;
+  background: var(--geo-blue);
+  clip-path: polygon(0 40%, 100% 0, 100% 100%, 0 100%);
+  z-index: 1;
+}
+
+.id-card.geometric-blue .geo-bg-navy-back-bottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 220px;
+  background: var(--geo-navy);
+  clip-path: polygon(20% 0, 100% 100%, 0% 100%);
+  opacity: 0.9;
+  z-index: 2;
+}
+
+/* Template specific overrides for text and elements */
+.id-card.geometric-blue .front-brand-name,
+.id-card.geometric-blue .front-brand-address {
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.id-card.geometric-blue .front-brand-logo {
+  border-color: var(--geo-blue);
+  background: white;
+}
+
+.id-card.geometric-blue .mesh-container {
+  border: 5px solid white;
+  box-shadow: 0 0 0 4px var(--geo-navy), 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.id-card.geometric-blue .mirror-name span {
+  color: var(--geo-blue);
+}
+
+.id-card.geometric-blue .front-sig-label {
+  color: #1a2634;
+  text-shadow: none;
+  font-weight: 900;
+}
+
+.id-card.geometric-blue .front-sig-display {
+  border-bottom-color: #cbd5e1;
+}
+
+.id-card.geometric-blue .copy-bullet {
+  background: var(--geo-blue);
+}
+
+/* Back view details for geometric-blue */
+.id-card.geometric-blue .id-card-back .back-brand-name {
+  color: #1a2634;
+  z-index: 10;
+}
+
+.id-card.geometric-blue .id-card-back .back-brand-slogan {
+  color: #64748b;
+  z-index: 10;
+}
+
+/* Ensure bio-data is visible by making it dark on the white parts */
+.id-card.geometric-blue .id-card-back .copy-text,
+.id-card.geometric-blue .id-card-back .copy-label,
+.id-card.geometric-blue .id-card-back .copy-val {
+  color: #1a2634;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  /* Glow to help on dark parts */
+  font-weight: 950;
+}
+
+/* Adjust back view shapes to be lower so they don't block text */
+.id-card.geometric-blue .geo-bg-blue-back-bottom {
+  height: 150px;
+}
+
+.id-card.geometric-blue .geo-bg-navy-back-bottom {
+  height: 120px;
+}
+
+/* ==========================================================================
+   RED & BLACK GEOMETRIC TEMPLATE (Latest)
+   ========================================================================== */
+
+.id-card.red-black-geo {
+  --rbg-navy: #1a2634;
+  --rbg-red: #e61e2a;
+  background: #ffffff;
+}
+
+/* Front Shapes */
+.id-card.red-black-geo .rbg-bg-navy-side {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: var(--rbg-navy);
+  clip-path: polygon(0 0, 100% 0, 0 60%);
+  z-index: 1;
+}
+
+.id-card.red-black-geo .rbg-bg-red-blob {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: 400px;
+  background: var(--rbg-red);
+  clip-path: ellipse(80% 60% at 100% 0%);
+  z-index: 2;
+}
+
+.id-card.red-black-geo .rbg-bg-accent-pill {
+  position: absolute;
+  bottom: 50px;
+  right: -20px;
+  width: 150px;
+  height: 30px;
+  background: var(--rbg-red);
+  transform: rotate(-35deg);
+  border-radius: 15px;
+  z-index: 1;
+}
+
+/* Back Shapes */
+.id-card.red-black-geo .rbg-bg-red-back-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 130px;
+  height: 130px;
+  background: var(--rbg-red);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  z-index: 1;
+}
+
+.id-card.red-black-geo .rbg-bg-red-back-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 250px;
+  height: 250px;
+  background: var(--rbg-red);
+  clip-path: circle(50% at 0% 100%);
+  z-index: 1;
+}
+
+.id-card.red-black-geo .rbg-bg-navy-back-mid {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 300px;
+  background: var(--rbg-navy);
+  clip-path: polygon(100% 30%, 100% 100%, 0 100%);
+  z-index: 0;
+}
+
+/* Overrides */
+.id-card.red-black-geo .front-brand-name,
+.id-card.red-black-geo .front-brand-address {
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.id-card.red-black-geo .front-brand-logo {
+  border-color: var(--rbg-red);
+}
+
+.id-card.red-black-geo .mirror-name span {
+  color: var(--rbg-red);
+}
+
+.id-card.red-black-geo .copy-bullet {
+  background: var(--rbg-red);
+}
+
+.id-card.red-black-geo .id-card-back .back-copy-list {
+  margin-top: 15px;
+}
