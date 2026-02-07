@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
 import { toPng } from 'html-to-image';
-import { Download, Upload, Trash2, PenTool, User, CheckCircle, Sparkles, QrCode, Menu, X, Printer } from 'lucide-react';
+import { Download, Upload, Trash2, PenTool, User, CheckCircle, Sparkles, QrCode, Menu, X, Printer, Shield } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import { getDominantColor, adjustColorBrightness, getContrastColor } from './utils/colorUtils';
 import IDCard from './components/IDCard';
@@ -372,10 +372,9 @@ const App = () => {
               <input type="text" name="dob" value={formData.dob} onChange={handleInputChange} />
             </div>
           </div>
-        </div>
 
-        {/* Contact Information Section */}
-        <div className="form-group" style={{ background: '#f8fafc', padding: '15px', borderRadius: '12px', border: '1px dashed #cbd5e1', marginBottom: '20px' }}>
+          <hr style={{ margin: '20px 0', borderTop: '1px dashed #cbd5e1' }} />
+
           <label style={{ color: 'var(--primary)', marginBottom: '15px', display: 'block' }}>📍 Contact Information</label>
 
           <div className="form-group">
@@ -398,20 +397,19 @@ const App = () => {
             <label>Email Address</label>
             <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter email address" />
           </div>
-        </div>
 
-        {/* Academic Information Section */}
-        <div className="form-group" style={{ background: '#f8fafc', padding: '15px', borderRadius: '12px', border: '1px dashed #cbd5e1', marginBottom: '20px' }}>
+          <hr style={{ margin: '20px 0', borderTop: '1px dashed #cbd5e1' }} />
+
           <label style={{ color: 'var(--primary)', marginBottom: '15px', display: 'block' }}>🎓 Academic Information</label>
 
           <div className="form-group">
             <label>Official Course / Role Name</label>
             <input type="text" name="courseName" value={formData.courseName} onChange={handleInputChange} />
           </div>
-        </div>
 
-        <div className="form-group" style={{ marginTop: '2rem' }}>
-          <label>Authentication & Assets</label>
+          <hr style={{ margin: '20px 0', borderTop: '1px dashed #cbd5e1' }} />
+
+          <label style={{ color: 'var(--primary)', marginBottom: '15px', display: 'block' }}>🛡️ Authentication & Assets</label>
           <div style={{ display: 'flex', gap: '15px' }}>
             <div style={{ flex: 1 }}>
               <input type="file" id="photo-upload" hidden onChange={handlePhotoUpload} accept="image/*" />
