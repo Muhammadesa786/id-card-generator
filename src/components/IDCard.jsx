@@ -70,6 +70,30 @@ const IDCard = ({ side, formData, fieldLabels, selectedTemplate, signatures, ins
                             {formData.courseName}
                         </div>
 
+                        {/* Key Bio-Data on Front */}
+                        <div className="front-bio-data">
+                            <div className="bio-row">
+                                <div className="bio-item">
+                                    <span className="bio-label">CNIC:</span>
+                                    <span className="bio-value">{formData.cnic || 'N/A'}</span>
+                                </div>
+                                <div className="bio-item">
+                                    <span className="bio-label">Blood:</span>
+                                    <span className="bio-value">{formData.bloodGroup || 'N/A'}</span>
+                                </div>
+                            </div>
+                            <div className="bio-row">
+                                <div className="bio-item">
+                                    <span className="bio-label">DOB:</span>
+                                    <span className="bio-value">{formData.dob || 'N/A'}</span>
+                                </div>
+                                <div className="bio-item">
+                                    <span className="bio-label">Contact:</span>
+                                    <span className="bio-value">{formData.cell || 'N/A'}</span>
+                                </div>
+                            </div>
+                        </div>
+
                         {/* Front Signatures (Added as per request) */}
                         <div className="front-signature-row">
                             <div className="front-sig-box">
