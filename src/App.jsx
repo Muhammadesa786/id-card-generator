@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
 import { toPng } from 'html-to-image';
-import { Download, Upload, Trash2, PenTool, User, CheckCircle, Sparkles, QrCode, Menu, X, Printer, Shield } from 'lucide-react';
+import { Download, Upload, Trash2, PenTool, User, CheckCircle, Sparkles, QrCode, Menu, X, Printer, Shield, RotateCcw } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import { getDominantColor, adjustColorBrightness, getContrastColor } from './utils/colorUtils';
 import IDCard from './components/IDCard';
@@ -220,6 +220,27 @@ const App = () => {
     }
   };
 
+  const handleClearForm = () => {
+    if (window.confirm("Are you sure you want to clear the entire form? This will remove the student photo, signature, and all personal details.")) {
+      setFormData(prev => ({
+        ...prev,
+        name: '',
+        fatherName: '',
+        cnic: '',
+        bloodGroup: '',
+        dob: '',
+        address: '',
+        markOfId: '',
+        cell: '',
+        courseName: '',
+        email: ''
+      }));
+      setPhoto(null);
+      setSignatures(prev => ({ ...prev, student: null }));
+      setActiveSig(null);
+    }
+  };
+
 
   return (
     <div className="app-main" style={brandColors ? {
@@ -267,8 +288,16 @@ const App = () => {
 
         {/* 1. Form Section */}
         <div className={`form-section ${isMenuOpen ? 'active' : ''}`}>
-          <div className="form-header">
+          <div className="form-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <h2>Institute & Student Profile</h2>
+            <button
+              onClick={handleClearForm}
+              className="btn btn-danger"
+              style={{ padding: '8px 15px', fontSize: '0.85rem', background: '#fee2e2', color: '#ef4444' }}
+              title="Clear all student data"
+            >
+              <RotateCcw size={16} style={{ marginRight: '5px' }} /> Clear Form
+            </button>
           </div>
 
           {/* Template Selection Section (Ultra Visible) */}
