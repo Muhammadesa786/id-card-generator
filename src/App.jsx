@@ -288,7 +288,7 @@ const App = () => {
 
         {/* 1. Form Section */}
         <div className={`form-section ${isMenuOpen ? 'active' : ''}`}>
-          <div className="form-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div className="form-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
             <h2>Institute & Student Profile</h2>
             <button
               onClick={handleClearForm}
