@@ -340,47 +340,6 @@ const App = () => {
             </div>
           </div>
 
-          <div className="form-group" style={{ background: '#f8fafc', padding: '15px', borderRadius: '12px', border: '1px dashed #cbd5e1', marginBottom: '20px' }}>
-            <label style={{ color: 'var(--primary)' }}>Field Labels Customization</label>
-            <div className="grid-2">
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Student Name Label</label>
-                <input type="text" name="name" value={fieldLabels.name} onChange={handleLabelChange} />
-              </div>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Father Name Label</label>
-                <input type="text" name="fatherName" value={fieldLabels.fatherName} onChange={handleLabelChange} />
-              </div>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>CNIC Label</label>
-                <input type="text" name="cnic" value={fieldLabels.cnic} onChange={handleLabelChange} />
-              </div>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Blood Group Label</label>
-                <input type="text" name="bloodGroup" value={fieldLabels.bloodGroup} onChange={handleLabelChange} />
-              </div>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Course Name Label</label>
-                <input type="text" name="course" value={fieldLabels.course} onChange={handleLabelChange} />
-              </div>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>ID Number Label</label>
-                <input type="text" name="id" value={fieldLabels.id} onChange={handleLabelChange} />
-              </div>
-            </div>
-            <div className="form-group" style={{ marginTop: '15px' }}>
-              <label>Back View Text Color</label>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <input
-                  type="color"
-                  value={backTextColor}
-                  onChange={(e) => setBackTextColor(e.target.value)}
-                  style={{ width: '50px', height: '35px', padding: '2px', cursor: 'pointer' }}
-                />
-                <span style={{ fontSize: '0.85rem', color: 'var(--marker)' }}>{backTextColor.toUpperCase()}</span>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div className="form-group">
